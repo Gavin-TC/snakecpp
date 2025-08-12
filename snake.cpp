@@ -10,7 +10,7 @@ Snake::Snake(Vector2 startingPos) {
 }
 
 // Updates the snakes position and direction, checks for death, and grows the snake if food was eaten.
-bool Snake::update(int width, int height, Vector2 dir, std::vector<Food> food) {
+bool Snake::update(int width, int height, Vector2 dir, const std::vector<Food> &food) {
 	if (dir != Vector2(0, 0) && dir != Vector2(-1, -1)) this->dir = dir;
 
 	// Insert a new head at the new position (prevPosition + dir)

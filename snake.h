@@ -14,7 +14,7 @@ public:
 	Snake(Vector2 startingPos, Vector2 dir);
 	Snake(Vector2 startingPos);
 	
-	bool update(int width, int height, Vector2 dir, std::vector<Food> food);
+	bool update(int width, int height, Vector2 dir, const std::vector<Food> &food);
 	void handleFood(std::vector<Food> &food);
 	void addHead();
 };
