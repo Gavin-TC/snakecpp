@@ -21,8 +21,8 @@ bool Snake::update(int width, int height, Vector2 dir, const std::vector<Food> &
 	else	   grow = false;
 
 	// If the head goes out of bounds, then the snake died this turn.
-	if (this->body[0].x < 0 or this->body[0].x > width - 1 ||
-		this->body[0].y < 0 or this->body[0].y > height - 1) {
+	if (this->body[0].x < 0 || this->body[0].x > width - 1 ||
+		this->body[0].y < 0 || this->body[0].y > height - 1) {
 		return false;
 	}
 
