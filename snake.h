@@ -19,4 +19,4 @@ public:
 	void addHead();
 };
 
-#endif SNAKE_H
+#endif // SNAKE_H

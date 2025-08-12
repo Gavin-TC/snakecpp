@@ -11,4 +11,4 @@ public:
 	Food(Vector2 pos);
 };
 
-#endif
+#endif // FOOD_H

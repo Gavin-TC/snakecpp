@@ -40,4 +40,4 @@ struct Vector2 {
 	}
 };
 
-#endif MAIN_H
+#endif // MAIN_H
