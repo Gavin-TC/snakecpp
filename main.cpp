@@ -46,10 +46,12 @@ int main(void) {
 	GameState state = PLAYING;
 	const int desiredFPS = 10;
 	int FPS = 1000 / desiredFPS;
+	int ticks = 0;
 
 	Vector2 direction = Vector2();
 	bool death = false;
 	bool ateFood = false;
+	int score = -1;
 
 	Snake * snake = new Snake(Vector2(WIDTH / 2, HEIGHT / 2), Vector2(1, 0));
 	std::vector<Food> food;
@@ -93,12 +95,15 @@ int main(void) {
 				else {
 					int idx = rand() % possiblePositions.size();
 					food.insert(food.begin(), Food(possiblePositions[idx]));
+					score++;
 				}
 			}
 
 			snake->handleFood(food);
 			death = !snake->update(WIDTH, HEIGHT, direction, food);
-			renderScreen(WIDTH, HEIGHT, *snake, food);
+			renderScreen(WIDTH, HEIGHT, ticks, *snake, food);
+			printAt(Vector2(0, HEIGHT), 'S');
+			std::cout << "core: " << score << std::endl;
 
 			if (death) state = LOST;
 
@@ -118,6 +123,8 @@ int main(void) {
 			gameRunning = false;
 			break;
 		}
+
+		ticks++;
 	}
 
 	return 0;
