@@ -10,14 +10,10 @@ void clearScreen() {
 	//std::cout << "\033[2J\033[H"; // Clears screen
 }
 
-void renderScreen(int width, int height, Snake snake, std::vector<Food> food) {
-	clearScreen();
-
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			std::cout << ".";
-		}
-		std::cout << std::endl;
+void renderScreen(int width, int height, int ticks, Snake snake, std::vector<Food> food) {
+	if (ticks == 0 || true) {
+		clearScreen();
+		renderBackground(width, height);
 	}
 
 	for (int i = 0; i < snake.body.size(); i++) {
@@ -29,3 +25,11 @@ void renderScreen(int width, int height, Snake snake, std::vector<Food> food) {
 	}
 }
 
+void renderBackground(int width, int height) {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			std::cout << ".";
+		}
+		std::cout << std::endl;
+	}
+}
