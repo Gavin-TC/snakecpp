@@ -1,6 +1,7 @@
 #ifndef FOOD_H
 #define FOOD_H
 
+#include <vector>
 #include "main.h"
 
 class Food {
