@@ -11,23 +11,7 @@ void clearScreen() {
 }
 
 void renderScreen(int width, int height, int ticks, Snake snake, std::vector<Food> food) {
-	if (ticks == 0) {
-		renderBackground(width, height);
-	}
-
-	for (int k = 0; k < snake.body.size(); k++) {
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
-				if (i == 0 && j == 0) continue;
-				Vector2 newPos = snake.body[k] - Vector2(j, i);
-
-				if (newPos.x > width - 1  || newPos.x < 0) continue;
-				if (newPos.y > height - 1 || newPos.y < 0) continue;
-
-				printAt(newPos, '.');
-			}
-		}
-	}
+	if (ticks == 0) renderBackground(width, height);
 
 	for (int i = 0; i < food.size(); i++) {
 		printAt(food[i].pos, '@');

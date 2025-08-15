@@ -49,6 +49,7 @@ int main(void) {
 	int ticks = 0;
 
 	Vector2 direction = Vector2();
+	Vector2 prevTail = Vector2();
 	bool death = false;
 	bool ateFood = false;
 	int score = -1;
@@ -109,23 +110,25 @@ int main(void) {
 				}
 			}
 
+			prevTail = snake->body.back();
 			death = !snake->update(WIDTH, HEIGHT, direction, food);
 			snake->handleFood(food);
 			renderScreen(WIDTH, HEIGHT, ticks, *snake, food);
-			// prints score
+			printAt(prevTail, '.');
+
+			// Prints score (jank, dont care)
 			printAt(Vector2(0, HEIGHT), 'S');
 			std::cout << "core: " << score << std::endl;
 
 			if (death) state = LOST;
 
-			// Slow down the thread to match the desired frame rate
-			// (kinda jank)
 			std::this_thread::sleep_for(std::chrono::milliseconds(FPS));
 			break;
 
 		case WON:
 			printAt(Vector2(0, HEIGHT + 1), 'Y');
 			std::cout << "ou won!" << std::endl;
+			gameRunning = false;
 			break;
 
 		case LOST:
