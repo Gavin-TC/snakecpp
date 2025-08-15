@@ -16,10 +16,6 @@ bool Snake::update(int width, int height, Vector2 dir, const std::vector<Food> &
 	// Insert a new head at the new position (prevPosition + dir)
 	addHead();
 
-	// If the grow flag is false, remove the tail
-	if (!grow) this->body.pop_back();
-	else	   grow = false;
-
 	// If the head goes out of bounds, then the snake died this turn.
 	if (this->body[0].x < 0 || this->body[0].x > width - 1 ||
 		this->body[0].y < 0 || this->body[0].y > height - 1) {
@@ -32,6 +28,12 @@ bool Snake::update(int width, int height, Vector2 dir, const std::vector<Food> &
 			return false;
 		}
 	}
+	
+	// If the grow flag is false, remove the tail
+	//if (!grow) this->body.pop_back();
+	//else	   grow = false;
+	if (!grow) this->body.pop_back();
+	else	   grow = false;
 
 	return true;
 }
@@ -42,7 +44,7 @@ void Snake::handleFood(std::vector<Food> &food) {
 	// is on top of a food, then it's eaten.
 	for (int i = 0; i < food.size(); i++) {
 		if (food[i].pos == this->body[0]) {
-			food.erase(food.begin());
+			//food.erase(food.begin());
 			grow = true;
 		}
 	}

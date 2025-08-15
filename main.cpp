@@ -56,6 +56,10 @@ int main(void) {
 	Snake * snake = new Snake(Vector2(WIDTH / 2, HEIGHT / 2), Vector2(1, 0));
 	std::vector<Food> food;
 
+	// Start the snake off with 3 length
+	snake->addHead();
+	snake->addHead();
+
 	srand(time(NULL));
 	while (gameRunning) {
 		switch (state) {
@@ -65,6 +69,12 @@ int main(void) {
 			if (direction == Vector2(-1, -1)) {
 				state = LOST;
 				break;
+			}
+
+			// Replace the background from the food q'd for deletion
+			if (snake->grow) {
+				printAt(food[0].pos, '.');
+				food.erase(food.begin());
 			}
 
 			if (food.empty()) {
@@ -99,9 +109,10 @@ int main(void) {
 				}
 			}
 
-			snake->handleFood(food);
 			death = !snake->update(WIDTH, HEIGHT, direction, food);
+			snake->handleFood(food);
 			renderScreen(WIDTH, HEIGHT, ticks, *snake, food);
+			// prints score
 			printAt(Vector2(0, HEIGHT), 'S');
 			std::cout << "core: " << score << std::endl;
 
